@@ -9,6 +9,8 @@ int isPrime(int a)
     {
     _Bool ans = 1;
 
+    //first we asumming that the number IS prime, if we will find ONE number (number > 1 && number<input) which divides the input,
+    //then it is Not a prime number. 
     for(int i=2;i<a; i++){
         if(a%i == 0){
             ans = 0;

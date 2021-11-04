@@ -15,9 +15,11 @@ int myPow(int num,int amount)
     return ans;
 }
 
-//helper to get the number of digits in given number.
-//for example: 1. intput:407, output:3. 
-//2.input:78, output:2.
+/*
+helper to get the number of digits in given number.
+for example: 1. intput:407, output:3. 
+2.input:78, output:2.
+*/ 
 int digits(int num)
 {
     int ans = 1;
@@ -31,26 +33,25 @@ int digits(int num)
 
 int isArmstrong(int a)
 {
-
-    int clone = a ;
+    int clone = a ; // copy (diffrent) of the input.
     int digits = 1;
     int tmp = 0;
     int check = 0;
     int ans = 0;
-    while(clone >= 10)
+    while(clone >= 10)  // digits check.
     {
         clone = clone/10;
         digits++;
     }
     clone = a;
-    while(clone >=10)
+    while(clone >=10) // each time we will take the smallest digit (for example, input 123 --> tmp =3 ),and send it to myPow.  
     {
         tmp = clone%10;
         check += myPow(tmp , digits);
         clone = clone/10;
     }
     check += myPow(clone,digits);
-    if(check == a){ans = 1;}
+    if(check == a){ans = 1;} // if the sum of all equls the input (a) return true.
     return ans;
 }
 
@@ -60,13 +61,15 @@ int isPalindrome(int a)
     int dig = digits(a);
     char numStr [dig];
     char check [dig];
-    sprintf(numStr,"%d",a);
-
-    for(int i=0; i<dig ;i++)
+    sprintf(numStr,"%d",a); // converting the input from int type to Sting(char array).
+    // coping the String in opposite digits.
+    for(int i=0; i<dig ;i++) 
     {
         check[i] = numStr[dig-i-1];
     }
-    for(int i=0;i<dig;i++)
+
+    //checking if each digit is equal in the copy and in the original string, if one digits not equals --> answer = false, break the loop.
+    for(int i=0;i<dig;i++) 
     {
         if(check[i] != numStr[i])
         {

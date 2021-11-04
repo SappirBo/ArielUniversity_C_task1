@@ -72,9 +72,14 @@ int isPalindromeRecu(char num[],int low,int high)
     }
 }
 
+
+
+/*
+the main function to find a Armstrong number.
+here it checkout the number of digits(with the function "digits()") and then using isArmstrongRecu() to determine the sum of the input.
+*/
 int isArmstrong(int a)
 {
-    
     int digit = digits(a);
     int ans = 0;
     int sum = isArmstrongRecu(a , digit);
@@ -82,11 +87,15 @@ int isArmstrong(int a)
     return ans;
 }
 
+/*
+the main function to find a Palindrome number.
+here it converts the int into String (char array), and send the string to isPalindromeRecu, that returns true/false (1\0).
+
+*/
 int isPalindrome(int a)
 {
     int dig = digits(a);
     char numStr [dig];
     sprintf(numStr,"%d",a);
-    return isPalindromeRecu(numStr,0,sizeof(numStr)-1);
-   
+    return isPalindromeRecu(numStr,0,sizeof(numStr)-1);  
 }
