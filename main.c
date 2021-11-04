@@ -36,7 +36,7 @@ int main()
         //int ans = i;
         if(isPrime(i)==1)
         {
-            printf( "%i",i);
+            printf(" %i",i);
         }
     }
 
