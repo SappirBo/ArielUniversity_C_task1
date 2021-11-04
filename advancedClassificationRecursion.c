@@ -1,9 +1,11 @@
 #include <stdio.h>
 
 
-//helper to get the number of digits in given number.
-//for example: 1. intput:407, output:3. 
-//2.input:78, output:2.
+/*
+helper to get the number of digits in given number.
+for example: 1. intput:407, output:3. 
+2.input:78, output:2.
+*/
 int digits(int num)
 {
     int ans = 1;
@@ -42,6 +44,33 @@ int isArmstrongRecu(int num,int d)
     } 
    
 }
+/*
+this is a recursive helper for isPolindrom - if num[low] = num[high] , it will call itself with low++ and high-- 
+(so it will check the next pair of digits). 
+*/
+int isPalindromeRecu(char num[],int low,int high)
+{
+    if(high == low){return 1;}
+    else if(high == low+1)
+    {
+        if(num[high] == num[low])
+        {
+            return 1;
+        }
+        else {return 0;}
+    }
+    else
+    {
+        if(num[high] == num[low])
+        {
+            return isPalindromeRecu(num, low+1, high-1);
+        }
+        else
+        {
+            return 0;
+        }
+    }
+}
 
 int isArmstrong(int a)
 {
@@ -55,33 +84,9 @@ int isArmstrong(int a)
 
 int isPalindrome(int a)
 {
-    // int check = digits(a);
-
-    if (digits(a)==1){ return 1;}
-    else if(digits(a)==2)
-    {
-        if(a/10 == a%10){return 1;}
-        else {return 0;}
-    }
-    else
-    {
-        int d = 1;
-        for(int i=1;i<digits(a); i++)
-        {
-            d *= 10;
-        } 
-
-    //    int num1 = a%10;
-   //     int num2 = a/d;
-
-        if(a%10 != a/d){return 0;}
-        else
-        {
-            int clone = a; 
-            clone = (a - d*(a%10))/10;
-            return isPalindrome(clone);  
-        }
-
-    }
-
+    int dig = digits(a);
+    char numStr [dig];
+    sprintf(numStr,"%d",a);
+    return isPalindromeRecu(numStr,0,sizeof(numStr)-1);
+   
 }
